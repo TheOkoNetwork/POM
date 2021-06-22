@@ -1,0 +1,4 @@
+{
+    "name": "POM",
+    "postCreateCommand": "bash scripts/install-dev-tools.sh"
+}
