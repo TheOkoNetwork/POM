@@ -44,7 +44,7 @@ jobs:
 
     - name: Build image
       run: |
-        gcloud builds submit --tag gcr.io/parkplanr-dev/pom --gcs-log-dir parkplanr-dev_cloudbuild/logs
+        gcloud builds submit --tag gcr.io/parkplanr-dev/pom --gcs-log-dir gs://parkplanr-dev_cloudbuild/logs
 
     - name: Deploy container
       run: |
