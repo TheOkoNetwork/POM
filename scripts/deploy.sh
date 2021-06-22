@@ -13,16 +13,6 @@ function deployService {
 	gcloud run deploy $service --image $image --platform managed --region $region
 }
 
-echo "Prettifying server"
-npx prettier -w index.js
-
-echo "Lint checks server"
-npx standard --fix index.js
-
-if [ $? != 0 ];then
-	exit $?
-fi
-
 echo "Building container image: $image"
 gcloud builds submit --tag $image
 
