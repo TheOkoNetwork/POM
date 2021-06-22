@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-name: Deploy to Dev
+name: Deploy to production
 
 on:
   push:
@@ -23,7 +23,7 @@ env:
 
 jobs:
   deploy:
-    name: Deploy POM to Dev
+    name: Deploy POM to Production
     runs-on: ubuntu-latest
 
     steps:
@@ -35,17 +35,16 @@ jobs:
       uses: google-github-actions/setup-gcloud@master
       with:
         version: '286.0.0'
-        service_account_key: ${{ secrets.RUN_SA_KEY }}
-
+        service_account_key: ${{ secrets.RUN_SA_KEY_PROD }}
 
     - name: Set project name
       run: |
-        gcloud config set project parkplanr-dev
+        gcloud config set project firebase-parkplanr
 
     - name: Build image
       run: |
-        gcloud builds submit --tag gcr.io/parkplanr-dev/pom --gcs-log-dir gs://parkplanr-dev_cloudbuild/logs
+        gcloud builds submit --tag gcr.io/firebase-parkplanr/pom --gcs-log-dir gs://firebase-parkplanr_cloudbuild/logs
 
     - name: Deploy container
       run: |
-        gcloud run deploy pom --image gcr.io/parkplanr-dev/pom --platform managed --region europe-north1
+        gcloud run deploy pom --image gcr.io/firebase-parkplanr/pom --platform managed --region europe-north1
