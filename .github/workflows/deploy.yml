@@ -37,14 +37,14 @@ jobs:
         version: '286.0.0'
         service_account_key: ${{ secrets.RUN_SA_KEY }}
 
-        
+
     - name: Set project name
       run: |
         gcloud config set project parkplanr-dev
 
     - name: Build image
       run: |
-        gcloud builds submit --tag gcr.io/parkplanr-dev/pom
+        gcloud builds submit --tag gcr.io/parkplanr-dev/pom --gcs-log-dir parkplanr-dev_cloudbuild/logs
 
     - name: Deploy container
       run: |
