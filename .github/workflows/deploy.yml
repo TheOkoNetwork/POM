@@ -23,8 +23,8 @@ env:
   SERVICE_NAME: pom
 
 jobs:
-  setup-build-deploy:
-    name: Setup, Build, and Deploy
+  deploy:
+    name: Deploy POM
     runs-on: ubuntu-latest
 
     steps:
