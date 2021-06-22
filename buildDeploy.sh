@@ -14,10 +14,10 @@ function deployService {
 }
 
 echo "Prettifying server"
-prettier -w index.js
+npx prettier -w index.js
 
 echo "Lint checks server"
-standard --fix index.js
+npx standard --fix index.js
 
 if [ $? != 0 ];then
 	exit $?
