@@ -12,19 +12,18 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-name: Build using Cloud Build
+name: Deploy to Dev
 
 on:
   push:
-    branches:
-    - master
-
+    branches-ignore:
+      - master
 env:
   SERVICE_NAME: pom
 
 jobs:
   deploy:
-    name: Deploy POM
+    name: Deploy POM to Dev
     runs-on: ubuntu-latest
 
     steps:
